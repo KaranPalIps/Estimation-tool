@@ -10,8 +10,8 @@ import { Search } from './ui/search';
 
 const Sidebar = () => {
     return (
-        <div className='h-full min-w-full flex-1 p-2 flex overflow-hidden'>
-            <nav aria-label="Sidebar" className="hidden w-full h-full lg:block flex-shrink-0 border-2 rounded-lg border-grey overflow-y-auto">
+        <div className='aspect-auto h-full min-w-full flex-1 flex overflow-hidden'>
+            <nav aria-label="Sidebar" className="hidden w-full h-full lg:block flex-shrink-0  overflow-y-auto">
                 <div className="relative w-full flex space-y-16 flex-col p-6">
                     <div className='grid grid-cols-6 gap-10'>
                         <div className='col-start-1 col-end-2'>
