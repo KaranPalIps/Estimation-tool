@@ -24,7 +24,7 @@ export default function Home() {
             <CardContent>
               React: 10 |
               Node: 10 |
-              Wordpress: 10 |
+              Wordpress: 10
             </CardContent>
           </Card>
         </div>
