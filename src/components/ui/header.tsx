@@ -1,5 +1,5 @@
 "use client"
-import React from 'react'
+import React, { ChangeEvent, useState } from 'react'
 import { Button } from './button'
 import { Search } from '../ui/search';
 import { FaCloudUploadAlt } from "react-icons/fa";
@@ -9,6 +9,18 @@ import { Label } from './label';
 import { Input } from './input';
 
 const Header = ({ header }) => {
+    const [selectedFile, setSelectedFile] = useState<string | null>(null);
+    const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setSelectedFile(reader.result as string);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
     return (
         <div className='w-[100%] my-4 px-5 border-b-2 border-[#F0F2F5] '>
             <div className='flex flex-row items-center mb-4'>
@@ -25,24 +37,14 @@ const Header = ({ header }) => {
                         </DialogTrigger>
                         <DialogContent className="sm:max-w-[425px]">
                             <DialogHeader>
-                                <DialogTitle>Edit profile</DialogTitle>
+                                <DialogTitle>Get Estimation</DialogTitle>
                                 <DialogDescription>
-                                    Make changes to your profile here. Click save when you're done.
+                                    Upload file to generate Estimation.
                                 </DialogDescription>
                             </DialogHeader>
                             <div className="grid gap-4 py-4">
-                                <div className="grid grid-cols-4 items-center gap-4">
-                                    <Label htmlFor="name" className="text-right">
-                                        Name
-                                    </Label>
-                                    <Input id="name" value="Pedro Duarte" className="col-span-3" />
-                                </div>
-                                <div className="grid grid-cols-4 items-center gap-4">
-                                    <Label htmlFor="username" className="text-right">
-                                        Username
-                                    </Label>
-                                    <Input id="username" value="@peduarte" className="col-span-3" />
-                                </div>
+                                <Input className='p-2' id="picture" type="file" onChange={handleFileChange} />
+                                <span className='text-[12px]'><b>Note:</b> File should be in xls or xlsx</span>
                             </div>
                             <DialogFooter>
                                 <Button className='primary-btn' type="submit">Save changes</Button>
