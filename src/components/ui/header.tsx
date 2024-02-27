@@ -33,16 +33,37 @@ const Header = ({ header }) => {
                 <div className='absolute right-[30px]'>
                     <Dialog>
                         <DialogTrigger>
-                            <Button className='primary-btn'><FaCloudUploadAlt className='m-1' />Get Estimation</Button>
+                            <Button className='primary-btn'><FaCloudUploadAlt className='m-1' />Search Estimation</Button>
                         </DialogTrigger>
                         <DialogContent className="sm:max-w-[425px]">
                             <DialogHeader>
-                                <DialogTitle>Get Estimation</DialogTitle>
+                                <DialogTitle>Search Estimation</DialogTitle>
                                 <DialogDescription>
                                     Upload file to generate Estimation.
                                 </DialogDescription>
                             </DialogHeader>
                             <div className="grid gap-4 py-4">
+                                <div className='flex flex-col w-[100%]'>
+                                    <Label className='mb-1'>Domain</Label>
+                                    <Input placeholder="Domain" name="domain" />
+                                </div>
+
+                                <div className='flex flex-col w-[100%]'>
+                                    <Label className='mb-1'>Frontend</Label>
+                                    <Input placeholder="Frontend Technology" name="frontend" />
+                                </div>
+
+                                <div className='flex flex-col w-[100%]'>
+                                    <Label className='mb-1'>Backend</Label>
+                                    <Input placeholder="Backend Technology" name="backend" />
+                                </div>
+
+
+                                <div className='flex flex-col w-[100%]'>
+                                    <Label className='mb-1'>Domain</Label>
+                                    <Input placeholder="Domain" name="domain" />
+                                </div>
+
                                 <Input className='p-2' id="picture" type="file" onChange={handleFileChange} />
                                 <span className='text-[12px]'><b>Note:</b> File should be in xls or xlsx</span>
                             </div>

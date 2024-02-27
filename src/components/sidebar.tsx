@@ -8,6 +8,7 @@ import { CiViewList } from "react-icons/ci";
 import { LiaFileUploadSolid } from "react-icons/lia";
 import { CiSaveDown1 } from "react-icons/ci";
 import { Search } from './ui/search';
+import { Button } from './ui/button';
 
 function Sidebar({ show, setter }) {
     const router = useRouter();
@@ -89,9 +90,21 @@ function Sidebar({ show, setter }) {
                         route="/saved"
                         icon={<CiSaveDown1 />}
                     />
+                    <MenuItem
+                        name="Result"
+                        route="/result"
+                        icon={<CiSaveDown1 />}
+                    />
                 </div>
+                <div className='absolute bottom-0 left-[3%]'>
+                    <div className='flex mb-5 justify-center'>
+                        <Button className='primary-btn'>Logout</Button>
+                    </div>
+                </div>
+
             </div>
             {show ? <ModalOverlay /> : <></>}
+
         </>
     )
 }
