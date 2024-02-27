@@ -1,101 +1,98 @@
+"use client"
 import React from 'react'
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
-import { MdOutlineSettings } from "react-icons/md";
-import { VscLayoutSidebarLeftOff } from "react-icons/vsc";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
-import { MdKeyboardCommandKey } from "react-icons/md";
-import { RiBookLine } from "react-icons/ri";
-import { BsGrid } from "react-icons/bs";
+import { CiViewList } from "react-icons/ci";
+import { LiaFileUploadSolid } from "react-icons/lia";
+import { CiSaveDown1 } from "react-icons/ci";
 import { Search } from './ui/search';
 
-const Sidebar = () => {
-    return (
-        <div className='aspect-auto h-full min-w-full flex-1 flex overflow-hidden'>
-            <nav aria-label="Sidebar" className="hidden w-full h-full lg:block flex-shrink-0  overflow-y-auto">
-                <div className="relative w-full flex space-y-16 flex-col p-6">
-                    <div className='grid grid-cols-6 gap-10'>
-                        <div className='col-start-1 col-end-2'>
-                            <Avatar>
-                                <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-                                <AvatarFallback>CN</AvatarFallback>
-                            </Avatar>
+function Sidebar({ show, setter }) {
+    const router = useRouter();
 
-                        </div>
-                        <div className='col-start-2 col-end-5 justify-center flex'>
-                            <p className='text-sm mt-2 display2 font-medium text-slate-900'>Mauro Sicard</p>
-                        </div>
-                        <div className='col-start-5 col-end-6 justify-between contents'>
-                            <MdOutlineSettings className='mt-2' />
-                            <VscLayoutSidebarLeftOff className='mt-2' />
-                        </div>
-                    </div>
+    // Define our base class
+    const className = "bg-slate-200 w-[250px] transition-[margin-left] ease-in-out duration-500 fixed md:static top-0 bottom-0 left-0 z-40 text-color";
+    // Append class based on state of sidebar visiblity
+    const appendClass = show ? " ml-0" : " ml-[-250px] md:ml-0";
 
-                    <div>
-                        <Search placeholder='Search for chats..' />
-                    </div>
+    // Clickable menu items
+    const MenuItem = ({ icon, name, route }) => {
+        // Highlight menu item based on currently displayed route
+        const colorClass = router.pathname === route ? "text-black" : "text-color hover:text-hover";
 
-                    <div>
-                        <ul>
-                            <li>
-                                <div className='flex p-2 justify-between'>
-                                    <div className='flex justify-center items-center'>
-                                        <div>
-                                            <IoChatbubbleEllipsesOutline />
-                                        </div>
-                                        <div className='ml-2 mb-1'>
-                                            <p className='text-sm mt-2 display2 font-medium'>Chats</p>
-                                        </div>
-                                    </div>
-                                    <div className='flex'>
-                                        <div className='bg-white h-9 w-9 flex justify-center items-center rounded-md'>
-                                            <MdKeyboardCommandKey />
-                                            <p>1</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div className='flex p-2 justify-between'>
-                                    <div className='flex justify-center items-center'>
-                                        <div>
-                                            <RiBookLine />
-                                        </div>
-                                        <div className='ml-2 mb-1'>
-                                            <p className='text-sm mt-2 display2 font-medium'>Library</p>
-                                        </div>
-                                    </div>
-                                    <div className='flex'>
-                                        <div className='bg-white h-9 w-9 flex justify-center items-center rounded-md'>
-                                            <MdKeyboardCommandKey />
-                                            <p>2</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div className='flex p-2 justify-between'>
-                                    <div className='flex justify-center items-center'>
-                                        <div>
-                                            <BsGrid />
-                                        </div>
-                                        <div className='ml-2 mb-1'>
-                                            <p className='text-sm mt-2 display2 font-medium'>Apps</p>
-                                        </div>
-                                    </div>
-                                    <div className='flex'>
-                                        <div className='bg-white h-9 w-9 flex justify-center items-center rounded-md'>
-                                            <MdKeyboardCommandKey />
-                                            <p>3</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-
+        return (
+            <Link
+                href={route}
+                onClick={() => {
+                    setter(oldVal => !oldVal);
+                }}
+                className={`flex gap-1 [&>*]:my-auto text-md pl-6 py-3 border-b-[1px] border-b-white/10 ${colorClass}`}
+            >
+                <div className="text-xl flex [&>*]:mx-auto w-[30px]">
+                    {icon}
                 </div>
-            </nav>
-        </div>
+                <div>{name}</div>
+            </Link>
+        )
+    }
+
+    // Overlay to prevent clicks in background, also serves as our close button
+    const ModalOverlay = () => (
+        <div
+            className={`flex md:hidden fixed top-0 right-0 bottom-0 left-0 bg-slate-100 z-30`}
+            onClick={() => {
+                setter(oldVal => !oldVal);
+            }}
+        />
+    )
+
+    return (
+        <>
+            <div className={`${className}${appendClass}`}>
+                <div className='flex gap-1 [&>*]:my-auto text-md pl-6 py-3'>
+                    <div className='flex [&>*]:mx-auto'>
+                        <Avatar>
+                            <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+                            <AvatarFallback>CN</AvatarFallback>
+                        </Avatar>
+
+                    </div>
+                    <div className='flex'>
+                        <p className='text-sm mt-2 display2 font-medium'>Mauro Sicard</p>
+                    </div>
+                </div>
+
+                <div className='flex p-4'>
+                    <Search placeholder='Search..' />
+                </div>
+
+                <div className="flex flex-col">
+                    <MenuItem
+                        name="Dashboard"
+                        route="/"
+                        icon={<IoChatbubbleEllipsesOutline />}
+                    />
+                    <MenuItem
+                        name="List"
+                        route="/list"
+                        icon={<CiViewList />}
+                    />
+                    <MenuItem
+                        name="Upload Estimation"
+                        route="/upload"
+                        icon={<LiaFileUploadSolid />}
+                    />
+                    <MenuItem
+                        name="Saved Estimation"
+                        route="/saved"
+                        icon={<CiSaveDown1 />}
+                    />
+                </div>
+            </div>
+            {show ? <ModalOverlay /> : <></>}
+        </>
     )
 }
 
