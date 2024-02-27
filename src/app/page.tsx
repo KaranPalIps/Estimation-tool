@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <div>
       <Header header="Dashboard"/>
-      <div className="flex justify-between">
+      <div className="flex">
         <div className="m-10">
           <Card>
             <CardHeader>
