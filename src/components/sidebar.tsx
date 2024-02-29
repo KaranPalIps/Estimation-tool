@@ -27,7 +27,7 @@ function Sidebar({ show, setter }) {
             <Link
                 href={route}
                 onClick={() => {
-                    setter(oldVal => !oldVal);
+                    setter((oldVal: any) => !oldVal);
                 }}
                 className={`flex gap-1 [&>*]:my-auto text-md pl-6 py-3 border-b-[1px] border-b-white/10 ${colorClass}`}
             >
@@ -44,7 +44,7 @@ function Sidebar({ show, setter }) {
         <div
             className={`flex md:hidden fixed top-0 right-0 bottom-0 left-0 bg-slate-100 z-30`}
             onClick={() => {
-                setter(oldVal => !oldVal);
+                setter((oldVal: any) => !oldVal);
             }}
         />
     )

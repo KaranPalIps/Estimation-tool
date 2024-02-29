@@ -9,7 +9,7 @@ const MenuBarMobile = ({ setter }) => {
             <button
                 className="text-4xl flex text-white"
                 onClick={() => {
-                    setter(oldVal => !oldVal);
+                    setter((oldVal: any) => !oldVal);
                 }}
             >
                 <Icon />
