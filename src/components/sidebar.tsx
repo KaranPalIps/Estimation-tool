@@ -1,8 +1,7 @@
 "use client"
 import React from 'react'
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
+import { usePathname } from 'next/navigation';
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import { CiViewList } from "react-icons/ci";
 import { LiaFileUploadSolid } from "react-icons/lia";
@@ -10,18 +9,30 @@ import { CiSaveDown1 } from "react-icons/ci";
 import { Search } from './ui/search';
 import { Button } from './ui/button';
 
-function Sidebar({ show, setter }) {
-    const router = useRouter();
+type SidebarProps = {
+    show: boolean,
+    setter: React.Dispatch<React.SetStateAction<boolean>>,
+}
+
+type MenuItemProps = {
+    icon: React.ReactNode,
+    name: string,
+    route: string,
+}
+
+
+function Sidebar({ show, setter }: SidebarProps) {
+    const pathname = usePathname();
 
     // Define our base class
-    const className = "bg-slate-200 w-[250px] transition-[margin-left] ease-in-out duration-500 fixed md:static top-0 bottom-0 left-0 z-40 text-color";
+    const className = "main-background w-[350px] transition-[margin-left] ease-in-out duration-500 fixed md:static top-0 bottom-0 left-0 z-40 text-color";
     // Append class based on state of sidebar visiblity
-    const appendClass = show ? " ml-0" : " ml-[-250px] md:ml-0";
+    const appendClass = show ? " ml-0" : " ml-[-200px] md:ml-0";
 
     // Clickable menu items
-    const MenuItem = ({ icon, name, route }) => {
+    const MenuItem = ({ icon, name, route }: MenuItemProps) => {
         // Highlight menu item based on currently displayed route
-        const colorClass = router.pathname === route ? "text-black" : "text-color hover:text-hover";
+        const colorClass = pathname === route ? "active-tab" : "text-color hover:text-hover";
 
         return (
             <Link
@@ -54,14 +65,7 @@ function Sidebar({ show, setter }) {
             <div className={`${className}${appendClass}`}>
                 <div className='flex gap-1 [&>*]:my-auto text-md pl-6 py-3'>
                     <div className='flex [&>*]:mx-auto'>
-                        <Avatar>
-                            <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-                            <AvatarFallback>CN</AvatarFallback>
-                        </Avatar>
-
-                    </div>
-                    <div className='flex'>
-                        <p className='text-sm mt-2 display2 font-medium'>Mauro Sicard</p>
+                        <h1 className='text-2xl bold'>Estimation Tool</h1>
                     </div>
                 </div>
 

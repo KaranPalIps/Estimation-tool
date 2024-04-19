@@ -1,6 +1,6 @@
 
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Roboto } from "next/font/google";
 import "./globals.css";
 import Sidebar from "@/components/sidebar";
 import { Card } from "@/components/ui/card";
@@ -8,7 +8,7 @@ import Header from "@/components/ui/header";
 import MainLayout from "@/components/main-layout";
 import { Toaster } from "@/components/ui/toaster";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Roboto({ subsets: ["cyrillic-ext"], weight: "500" });
 
 export const metadata: Metadata = {
   title: "Estimation tool",
