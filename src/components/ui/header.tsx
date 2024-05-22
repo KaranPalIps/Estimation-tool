@@ -1,82 +1,30 @@
-"use client"
-import React, { ChangeEvent, useState } from 'react'
-import { Button } from './button'
-import { Search } from '../ui/search';
-import { FaCloudUploadAlt } from "react-icons/fa";
-import useStore from '@/lib/store';
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from './dialog';
-import { Label } from './label';
-import { Input } from './input';
+import { cn } from "@/lib/utils";
+import { ThemeToggle } from "../theme-toggle";
+import { MobileSidebar } from "../mobileSidebar";
+import Link from "next/link";
 
-const Header = ({ header }) => {
-    const [selectedFile, setSelectedFile] = useState<string | null>(null);
-    const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
+import { Boxes } from "lucide-react";
+import { Button } from "../ui/button";
 
-        if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setSelectedFile(reader.result as string);
-            };
-            reader.readAsDataURL(file);
-        }
-    };
-    return (
-        <div className='w-[100%] my-4 px-5 border-b-2 border-[#F0F2F5] '>
-            <div className='flex flex-row items-center mb-4'>
-                <div className='mr-10'>
-                    <h1 className='font-bold text-slate-800'>{header}</h1>
-                </div>
-                <div className='w-[30%]'>
-                    <Search placeholder='Search for chats...' />
-                </div>
-                <div className='absolute right-[30px]'>
-                    <Dialog>
-                        <DialogTrigger>
-                            <Button className='primary-btn'><FaCloudUploadAlt className='m-1' />Search Estimation</Button>
-                        </DialogTrigger>
-                        <DialogContent className="sm:max-w-[425px]">
-                            <DialogHeader>
-                                <DialogTitle>Search Estimation</DialogTitle>
-                                <DialogDescription>
-                                    Upload file to generate Estimation.
-                                </DialogDescription>
-                            </DialogHeader>
-                            <div className="grid gap-4 py-4">
-                                <div className='flex flex-col w-[100%]'>
-                                    <Label className='mb-1'>Domain</Label>
-                                    <Input placeholder="Domain" name="domain" />
-                                </div>
-
-                                <div className='flex flex-col w-[100%]'>
-                                    <Label className='mb-1'>Frontend</Label>
-                                    <Input placeholder="Frontend Technology" name="frontend" />
-                                </div>
-
-                                <div className='flex flex-col w-[100%]'>
-                                    <Label className='mb-1'>Backend</Label>
-                                    <Input placeholder="Backend Technology" name="backend" />
-                                </div>
-
-
-                                <div className='flex flex-col w-[100%]'>
-                                    <Label className='mb-1'>Domain</Label>
-                                    <Input placeholder="Domain" name="domain" />
-                                </div>
-
-                                <Input className='p-2' id="picture" type="file" onChange={handleFileChange} />
-                                <span className='text-[12px]'><b>Note:</b> File should be in xls or xlsx</span>
-                            </div>
-                            <DialogFooter>
-                                <Button className='primary-btn' type="submit">Save changes</Button>
-                            </DialogFooter>
-                        </DialogContent>
-                    </Dialog>
-                </div>
-            </div>
+export default function Header() {
+  return (
+    <div className="supports-backdrop-blur:bg-background/60 fixed left-0 right-0 top-0 z-20 border-b bg-background/95 backdrop-blur">
+      <nav className="flex h-16 items-center justify-between px-4">
+        <Link
+          href={"/"}
+          className="hidden items-center justify-between gap-2 md:flex"
+        >
+          <Boxes className="h-6 w-6" />
+          <h1 className="text-lg font-semibold">Create Certificate</h1>
+        </Link>
+        <div className={cn("block md:!hidden")}>
+          <MobileSidebar />
         </div>
 
-    )
+        <div className="flex items-center gap-2">
+          {/* <ThemeToggle /> */}
+        </div>
+      </nav>
+    </div>
+  );
 }
-
-export default Header

@@ -4,6 +4,7 @@
 
 @layer base {
   :root {
+    /* --background: 231, 30%, 95%; */
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
 
@@ -90,7 +91,7 @@
   }
 
   .primary-btn {
-    background-color: #2a79fb !important;
+    background-color: #835fdb !important;
   }
 
   .text-color {
@@ -98,15 +99,19 @@
   }
 
   .active-tab {
-    color: blue
+    color: white;
+    background: #835fdb;
+    margin: 0 10px;
+    border-radius: 1rem;
+    padding: 0 1rem 0;
   }
 
   .text-hover {
-    color: #1777e7
+    color: #835fdb
   }
 
   .main-background {
-    background: #233446;
+    background: #111d42;
     color: #FFFFFF;
   }
 

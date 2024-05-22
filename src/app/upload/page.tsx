@@ -3,6 +3,7 @@ import Header from '@/components/ui/header'
 import React, { ChangeEvent, useState } from 'react'
 import { Input } from '../../components/ui/input';
 import { Label } from '../../components/ui/label'
+import { Button } from '@/components/ui/button';
 
 const UploadEstimation = () => {
 
@@ -56,9 +57,7 @@ const UploadEstimation = () => {
             <Input className='p-2' id="picture" type="file" onChange={handleFileChange} />
             <span className='text-[12px]'><b>Note:</b> File should be in xls or xlsx</span>
           </div>
-          <button type="submit" className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Submit
-          </button>
+          <Button className='primary-btn' type="submit">Save changes</Button>
         </form>
       </div>
     </div>

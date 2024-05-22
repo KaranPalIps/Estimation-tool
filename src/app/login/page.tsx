@@ -77,34 +77,38 @@ const page = () => {
   //   }
   // })
   return (
-    <div className='main-background flex justify-center h-screen items-center'>
-      {/* <Card className='p-8 w-1/2 h-1/3'>
-        <CardContent>
-        <form onSubmit={formik.handleSubmit}> 
-            <div>
-              <div><h1 className='text-center'>Login</h1></div>
-              <p className='text-center'>Please sign in to continue</p>
+    <div className='bg-#f5f5f9 w-full flex flex-auto items-stretch'>
 
-              <Label>Email</Label>
-              <Input placeholder='Email here' type='email' name='email' onChange={formik.handleChange} value={formik.values.email} />
-              <div className='error-message'>
-                {formik.errors.email && formik.touched.email ? <div>{formik.errors.email}</div> : null}
-              </div>
+      <div className='flex min-h-screen w-full items-center justify-center overflow-hidden'>
+        <div className='max-w-lg relative'>
+          <Card className='h-full'>
+            <CardContent className='min-w-96 min-h-64 pt-6'>
+              <form>
+                <div>
+                  <div className='pb-2'><h1 className='text-center'>IPS Estimation Tool</h1></div>
 
-              <Label>Password</Label>
-              <Input placeholder='Password here' type='password' name='password' onChange={formik.handleChange} value={formik.values.password} />
-              <div className='error-message'>
-                {formik.errors.password && formik.touched.password ? <div>{formik.errors.password}</div> : null}
-              </div>
+                  <Label>Username</Label>
+                  <Input placeholder='Username' type='email' name='email' />
+                  <div className='error-message'>
+                    {/* {formik.errors.email && formik.touched.email ? <div>{formik.errors.email}</div> : null} */}
+                  </div>
+
+                  <Label>Password</Label>
+                  <Input placeholder='Password' type='password' name='password' />
+                  <div className='error-message'>
+                    {/* {formik.errors.password && formik.touched.password ? <div>{formik.errors.password}</div> : null} */}
+                  </div>
 
 
-              <div className='mt-3 float-right'>
-                <Button className='primary-btn' disabled={loading} type='submit'>Login</Button>
-              </div>
-            </div>
-          </form> 
-        </CardContent>
-      </Card> */}
+                  <div className='mt-3'>
+                    <Button className='primary-btn w-full' disabled={loading} type='submit'>Login</Button>
+                  </div>
+                </div>
+              </form>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
     </div>
   )
 }

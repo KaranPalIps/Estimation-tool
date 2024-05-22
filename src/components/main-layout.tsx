@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import { usePathname } from 'next/navigation'
 import Sidebar from './sidebar';
-import MenuBarMobile from './menu-bar-mobile';
+import MenuBarMobile from './mobileSidebar';
 
 export default function MainLayout() {
     const [showSidebar, setShowSideBar] = useState(false);
